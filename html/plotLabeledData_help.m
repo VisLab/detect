@@ -73,10 +73,10 @@
 % Build the artifact classification model from the sample data
 % included in the toolbox, and display only eye blinks and jaw clenches:
 
-   load data/training;
-   load data/labels;
+   load training;
+   load labels;
    model = getModel(training, labels, 1 : 64);
-   load data/testing;
+   load testing;
    results = labelData(testing, model, 256, .125);
    labelSet = plotLabeledData(testing, model, results, 'srate', 256, 'includeClasses', {'Eye Blink', 'Jaw Clench'})
 

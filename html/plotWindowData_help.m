@@ -78,8 +78,8 @@
 % the same epoched data. Plot only epochs containing eye blinks and jaw
 % clenches. 
 
-   load data/training
-   load data/labels
+   load training.mat;
+   load labels.mat;
    model = getModel(training, labels, 1 : 64);
    results = labelWindows(training, model, labels);
    events = plotWindowData(training, model, results, 'srate', 256, 'includeClasses', {'Eye Blink', 'Jaw Clench'})

@@ -97,8 +97,8 @@
 % validations as well. Use the sample training dataset provided with the 
 % toolbox for illustration.
 
-    load data/training.mat;
-    load data/labels.mat;
+    load training.mat;
+    load labels.mat;
     model = getModel(training, labels, 1:32, 2, @getARfeatures, 5)
 
 %% See also

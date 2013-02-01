@@ -1,9 +1,10 @@
 *.asv
 
-
+data/*
 *.html
 !index.html
 !functionsByCategoryIndex.html
+
 
 *help_*.png
 !help_ex.png

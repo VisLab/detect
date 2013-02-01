@@ -4,8 +4,7 @@
 % assess the effects of various operations at different stages in your
 % processing pipelines. 
 %
-%
-%% Version 1.0 Beta, Dec 11, 2012
+% Version 1.0 January 31, 2013
 % Initial release
 
 %% 

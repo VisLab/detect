@@ -1,0 +1,45 @@
+<html xmlns:saxon="http://icl.com/saxon"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+      <link rel="stylesheet" type="text/css" href="doc.css">
+      <meta author="Vernon Lawhern, Kay Robbins">
+      <meta copyright="2011-2013 University of Texas at San Antonio">
+      <title>DETECT Documentation</title>
+   </head>
+
+<body><h1>DETECT: A MATLAB Toolbox for Event Detection and Identification in Time Series</h1>
+
+       <h2><a href="detect_system_requirements.html">System Requirements</a></h2>
+  
+       <h2><a href="detect_release_notes.html">Release Notes</a></h2>
+
+       <h2><a href="http://visual.cs.utsa.edu/detect">DETECT Toobox Home page</a>
+
+  
+   </h2><h2>Function reference</h2>
+
+   <h3>General functions</h3>
+   <ul>
+       <li><a href="getARfeatures_help.html"><tt>getARfeatures</tt></a> estimate autoregressive coefficients (get feature vectors)</li>
+       <li><a href="getModel_help.html"><tt>getModel</tt></a> create a model or classifier based on labeled training data </li>
+       <li><a href="labelData_help.html"><tt>labelData</tt></a> label data in sliding time windows, reporting certainty of each label</li> 
+       <li><a href="labelWindows_help.html"><tt>labelWindows</tt></a> label windowed data based on a classifier</li>
+       <li><a href="compareLabels_help.html"><tt>compareLabels</tt></a> compare two sets of labeled data</li>
+   </ul>
+
+<h3>EEG related functions (depends on EEGLAB)</h3>
+<ul>
+    <li><a href="getLabels_help.html"><tt>getLabels</tt></a> extract data from continuous dataset for model training</li>
+    <li><a href="plotLabeledData_help.html"><tt>plotLabeledData</tt></a> plots the results from labelData</li>
+    <li><a href="plotMarkedData_help.html"><tt>plotMarkedData</tt></a> plots the manually marked data from markEvents</li>
+    <li><a href="plotWindowData_help.html"><tt>plotWindowData</tt></a> plots the results from labelData when testing on windowed data</li>
+    <li><a href="markEvents_help.html"><tt>markEvents</tt></a> GUI for manual labeling of events in data</li>
+</ul>
+
+<h3>Certainty threshold policies</h3>
+<ul>
+    <li><a href="thresholdPolicy_help.html"><tt>thresholdPolicy</tt></li>
+    <li><a href="unknownPolicy_help.html"><tt>unknownPolicy</tt></li>
+</ul>
+
+      
+</body></html>

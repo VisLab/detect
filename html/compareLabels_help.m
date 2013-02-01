@@ -105,8 +105,8 @@
 % Compare the labelings using two different channel sets to
 % train an artifact discrimination model:
 
-     training = pop_loadset('data/training.set');
-     load('data/labels.mat');
+     training = pop_loadset('training.set');
+     load('labels.mat');
      
      % build model using all 64 EEG Channels
      model1 = getModel(training, labels, 1:64);
@@ -115,7 +115,7 @@
      model2 = getModel(training, labels, 1:32);
      
      % now load testing dataset
-     testing = pop_loadset('data/testing.set');
+     testing = pop_loadset('testing.set');
 
      % Use sliding window of .125s for data sampled at 256hz
      results1 = labelData(testing, model1, 256, .125);

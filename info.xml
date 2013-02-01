@@ -3,7 +3,7 @@ xsi:noNamespaceSchemaLocation="optional">
     <?xml-stylesheet type="text/xsl"href="optional"?>
     <!-- info.xml file for the DETECT toolbox -->
     <!-- Author: Vernon Lawhern and Kay A. Robbins -->
-    <!-- Copyright 2012 UTSA -->
+    <!-- Copyright 2012-2013 UTSA -->
     
     <!-- Release element is not used, but provides documentation -->
     <matlabrelease>2010a</matlabrelease>

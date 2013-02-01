@@ -98,12 +98,12 @@
 % Extract 1/2 second training epochs labeled 'None' and 'Blink'
 % using an EEGLAB EEG dataset. 
 %    
-%   EEG = pop_loadset('data/testing.set');
+%   EEG = pop_loadset('testing.set');
 %   [dataWindows, labels] = getLabels(EEG, {'None', 'Blink'}, 0.5, 'srate', 256)
-%
+% 
 % This example works the same with a 2-D matrix as input:
-%
-%   EEG = load('data/testing.mat');
+% 
+%   EEG = load('testing.mat');
 %   [dataWindows, labels] = getLabels(testing, {'None', 'Blink'}, .5, 'srate',  256)
 %%
 % Copyright 2011-2013 Vernon Lawhern and Kay A. Robbins, University of Texas at San Antonio

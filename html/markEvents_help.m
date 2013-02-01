@@ -69,7 +69,7 @@
 % Example 1 for marking EEG data with blinks, muscles and Other and saves it to
 % the output variable regions with a sampling rate of 256Hz.
 % 
-%     load data/testing;
+%     load testing;
 %     regions = markEvents(testing, {'Blink', 'Muscle', 'Other'}, 'srate', 256);
 %
 % A sample output is:

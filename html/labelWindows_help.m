@@ -70,8 +70,8 @@
 % validations as well. Use the sample training dataset provided with the 
 % toolbox for illustration. Use the output to classify the same data.
 
-    load data/training.mat;
-    load data/labels.mat;
+    load training.mat;
+    load labels.mat;
     model = getModel(training, labels, 1:32, 2, @getARfeatures, 5)
     [results accuracy] = labelWindows(training, model, labels)
     results(10)

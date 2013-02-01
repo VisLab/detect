@@ -21,9 +21,9 @@
 %
 %% Example
 % Create a model from the training data and relabel uncertain events
-   load('data/training.mat');
-   load('data/labels.mat');
-   load('data/testing.mat');
+   load('training.mat');
+   load('labels.mat');
+   load('testing.mat');
    model = getModel(training, labels);
    results = labelData(testing, model, 256, 0.25);
    results = unknownPolicy(results, 'None', 0.5);
