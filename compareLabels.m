@@ -115,37 +115,27 @@ function [results errorInfo timeInfo] = compareLabels(inputData, labeledSet1, la
 %      
 %      % now load testing dataset
 %      testing = pop_loadset('data/testing.set');
-%
+% 
 %      % Use sliding window of .125s for data sampled at 256hz
 %      results1 = labelData(testing, model1, 256, .125);
 %      results2 = labelData(testing, model2, 256, .125);
-%
+% 
 %      % apply a certainty policy to remove false positives
-%
+% 
 %      results1 = thresholdPolicy(results1, 'None', .5);
 %      results2 = thresholdPolicy(results2, 'None', .5);
-%
+% 
 %      % plot the data and get an event list ignoring the category 'None'
-%
+% 
 %      classes = {'Eye Blink', 'Eye Left Movement', 'Eye Up Movement', 'Eyebrow Movement', 'Jaw Clench', 'Jaw Movement'}
-%      events1 = plotLabeledData(testing, model1, results1, 256, classes);
-%      events2 = plotLabeledData(testing, model2, results2, 256, classes);
-%
+%      events1 = plotLabeledData(testing, model1, results1, 'srate', 256, 'includeClasses', classes);
+%      events2 = plotLabeledData(testing, model2, results2, 'srate', 256, 'includeClasses', classes);
+% 
 %      % compare the labelings, allowing for up to .100s timing error, for
 %      % data sampled at 256hz. 
-%
+% 
 %      [results, errorInfo, timeInfo] = compareLabels(testing, events1,...
-%      events2, .1, 256);
-%
-%      % the output should be 
-%
-%       -----------------------------------------------------
-%       Total Time in Agreement = 460.527 seconds
-%       Total Time in TypeError =  2.219 seconds
-%       Total Time in FalsePositive = 16.016 seconds
-%       Total Time in FalseNegative =  0.773 seconds
-%       Total Time of Data = 480.000 seconds
-%       -----------------------------------------------------      
+%      events2, .1, 256);    
 
 %   Copyright (C) 2012  Vernon Lawhern, UTSA, vlawhern@cs.utsa.edu
 %                       Kay Robbins, UTSA, krobbins@cs.utsa.edu
@@ -352,25 +342,29 @@ for i = 1 : length(unique_regions)
 end
 
 % now calculating timeInfo.
-t1 = strcmpi(results(:,1), 'Agreement') | strcmpi(results(:,1), 'NullAgreement');
+t1 = strcmpi(results(:,1), 'Agreement');
 t2 = strcmpi(results(:,1), 'TypeError');
 t3 = strcmpi(results(:,1), 'FalsePositive');
 t4 = strcmpi(results(:,1), 'FalseNegative');
+t5 = strcmpi(results(:,1), 'NullAgreement');
 
-time_agree         = sum(diff(cell2mat(results(t1,2:3))'));
-time_typeError     = sum(diff(cell2mat(results(t2,2:3))'));
-time_FalsePositive = sum(diff(cell2mat(results(t3,2:3))'));
-time_FalseNegative = sum(diff(cell2mat(results(t4,2:3))'));
+time_agree         = sum(diff(cell2mat(results(t1,2:3))'))+sum(t1,1)/srate;
+time_typeError     = sum(diff(cell2mat(results(t2,2:3))'))+sum(t2,1)/srate;
+time_FalsePositive = sum(diff(cell2mat(results(t3,2:3))'))+sum(t3,1)/srate;
+time_FalseNegative = sum(diff(cell2mat(results(t4,2:3))'))+sum(t4,1)/srate;
+time_nullAgree     = sum(diff(cell2mat(results(t5,2:3))'))+sum(t5,1)/srate;
 
 fprintf('\n-----------------------------------------------------');
-fprintf('\nTotal Time in Agreement = %6.3f seconds', time_agree);
-fprintf('\nTotal Time in TypeError = %6.3f seconds', time_typeError);
+fprintf('\nTotal Time in Agreement     = %6.3f seconds', time_agree);
+fprintf('\nTotal Time in NullAgreement = %6.3f seconds', time_nullAgree);
+fprintf('\nTotal Time in TypeError     = %6.3f seconds', time_typeError);
 fprintf('\nTotal Time in FalsePositive = %6.3f seconds', time_FalsePositive);
 fprintf('\nTotal Time in FalseNegative = %6.3f seconds', time_FalseNegative);
 fprintf('\nTotal Time of Data = %6.3f seconds', (nFrames-1)/srate);
-fprintf('\n-----------------------------------------------------\n');
+fprintf('\n-----------------------------------------------------\n');   
 
 timeInfo.agreement = time_agree;
+timeInfo.nullAgreement = time_nullAgree;
 timeInfo.typeError = time_typeError;
 timeInfo.falsePositive = time_FalsePositive;
 timeInfo.falseNegative = time_FalseNegative;

@@ -1,5 +1,5 @@
 % DETECT Toolbox 
-% Version 1-January 31, 2013
+% Version 1.1 6-March-2013
 %
 % Requires EEGLAB if plotting functions are used
 %
