@@ -104,11 +104,11 @@ function model = getModel(training, labels, sChannels, numCVs, featureFunction, 
     % Process the arguments
     if nargin == 2
         sChannels = 1 : channels;
-        numCVs = 4;
+        numCVs = 10;
         featureFunction = @getARfeatures;
         varargin{1} = 2;
     elseif nargin == 3
-        numCVs = 4;
+        numCVs = 10;
         featureFunction = @getARfeatures;
         varargin{1} = 2;
     elseif nargin == 4
@@ -150,10 +150,16 @@ function model = trainSVM(features, labels, numCVs)
 % Train SVM using specified features, labels and cross validations
     [categories, ia, index] = unique(labels);  %#ok<ASGLU>
 
+    % check to see if the data is balanced. Throws a warning if not. 
+    [temp1, ignore] = histc(index, unique(index)); %#ok<NASGU>
+    if sum(temp1==temp1(1))~=length(categories);
+        warning('DETECT:UnbalancedData','WARNING: Training data set is not balanced. Estimated SVM model may be inaccurate');
+    end
+    
     % Grid search to optimize RBF parameters C (cost) and G (variance).
     bestcv = 0;
-    for log2c = -5 : 0.5 : 5,
-        for log2g = -5 : 0.5 : 5,
+    for log2c = -5 : 0.5 : 10,
+        for log2g = -5 : 0.5 : 10,
             cmd = [' -v ', num2str(numCVs), ' -c ', num2str(2^log2c), ...
                 ' -g ', num2str(2^log2g) ' -q '];
             cv = svmtrain_DETECT(index, features, cmd);
