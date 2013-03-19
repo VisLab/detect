@@ -110,7 +110,9 @@ function labelSet = plotLabeledData(inputData, model, results, varargin)
     
     includeClasses = parser.Results.includeClasses;
     colors = parser.Results.colors;
-    categories = model.alphaLabelOrder;
+    predicted = {results(:).label};
+    categories = unique(predicted)';
+ 
     if isempty(colors) || size(colors, 1) < length(categories)
         colors = jet(length(categories));
     end
@@ -122,9 +124,6 @@ function labelSet = plotLabeledData(inputData, model, results, varargin)
     elseif ndims(inputData) == 2 && length(inputData) ~= 1 %#ok<ISMAT>
         data = inputData;
     end
-    
-    labels = model.alphaLabelOrder;    
-    predicted = {results(:).label};
 
     % Extract the labeled windows as events
     id = predicted(1);
@@ -144,9 +143,13 @@ function labelSet = plotLabeledData(inputData, model, results, varargin)
             eventcodes{eCount} = char(predicted(i));
         end
     end
-    % Add in half the training window size back to the last event time
     labelSet(eCount).endTime = results(N).time(2);
-
+    
+    % add 'Unknown' to includeClasses (unknown's from unknownPolicy)
+    if any(ismember(categories, 'Unknown'))==1
+        includeClasses{end+1} = 'Unknown';
+    end
+       
     % If given which classes to use (by includeClasses), will extract out
     if ~isempty(includeClasses)
         index = zeros(length(labelSet), 1);
@@ -156,20 +159,20 @@ function labelSet = plotLabeledData(inputData, model, results, varargin)
         index = logical(index); % converts to logical
         labelSet = labelSet(index);
     end
-    
+
     % Event struct = [startTime endTime rgb(1) rgb(2) rgb(3) ch1 ... chM]
     eventMatrix = zeros(length(labelSet), size(data,1) + 5);
     for i = 1 : length(labelSet)
         eventMatrix(i, 1:2) = [srate*labelSet(i).startTime, srate*labelSet(i).endTime];
-        for j = 1 : size(labels,1)
-            if strcmpi(labelSet(i).label, labels(j))
+        for j = 1 : size(categories,1)
+            if strcmpi(labelSet(i).label, categories(j))
                 eventMatrix(i, 3:5) = colors(j,:);
             end
         end
     end
     
     % eegplot2 modified from eegplot to include labels and colors
-    eegplot2(data, labels, colors, 'eloc_file', chanlocs,...
+    eegplot2(data, categories, colors, 'eloc_file', chanlocs,...
        'srate', srate, 'events', eventList, 'title', ...
        'plotLabeledData', 'command', [], 'winrej', eventMatrix);
     labelSet = (squeeze(struct2cell(labelSet)))';

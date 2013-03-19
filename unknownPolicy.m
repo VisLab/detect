@@ -107,7 +107,7 @@ function [results accuracy] = unknownPolicy(results, baseline_class, certainty_t
     N = length(certainty);
     for j = 1 : N
         if certainty(j) < certainty_threshold
-            % One of top two predicted classes must be from baseline_class
+           % One of top two predicted classes must be from baseline_class
             if strcmp(results(j).likelihoods(1), baseline_class) == 1 || ...
                     strcmp(results(j).likelihoods(2), baseline_class) == 1
                 results(j).label = baseline_class;

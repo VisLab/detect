@@ -1,5 +1,5 @@
 function events = plotWindowData(inputData, model, results, varargin)
-%plotWindowData   plots the decoded windows from labelTrials
+%plotWindowData   plots the decoded windows from labelWindows
 %
 % Syntax:
 %   events = plotWindowData(inputData, model, results)
@@ -110,7 +110,10 @@ function events = plotWindowData(inputData, model, results, varargin)
     
     includeClasses = parser.Results.includeClasses;
     colors = parser.Results.colors;
-    categories = model.alphaLabelOrder;
+    predicted = {results.label}';
+    categories = unique({results.label})';
+    windowLength = model.tframes;
+    
     if isempty(colors) || size(colors, 1) < length(categories)
         colors = jet(length(categories));
     end
@@ -123,10 +126,6 @@ function events = plotWindowData(inputData, model, results, varargin)
         data = inputData;
     end
        
-    windowLength = model.tframes;
-    predicted = {results.label}';
-    labels = unique({results.label});
-
     [nChannels, nSamples, nWindows] = size(data); %#ok<ASGLU>
     t = (0 : nWindows) * windowLength; 
     [ignore1, ignore2, colorIndex] = unique(predicted); %#ok<ASGLU>
@@ -135,6 +134,11 @@ function events = plotWindowData(inputData, model, results, varargin)
     eventMatrix = zeros(nWindows, nChannels + 5);
     eventMatrix(:,1:2) = [t(1:end-1)' t(2:end)'];
     eventMatrix(:,3:5) = colors(colorIndex, :);  
+    
+%     % add 'Unknown' to includeClasses (unknown's from unknownPolicy)
+%     if any(ismember(categories, 'Unknown'))==1
+%         includeClasses{end+1} = 'Unknown';
+%     end
     
     % if given which classes to use (by includeClasses), will extract out
     if ~isempty(includeClasses)
@@ -147,7 +151,7 @@ function events = plotWindowData(inputData, model, results, varargin)
     end
     
     % eegplot2 modified from eegplot to include labels and colors 
-    eegplot2(data, labels, colors, 'eloc_file', chanlocs,...
+    eegplot2(data, categories, colors, 'eloc_file', chanlocs,...
         'srate', srate, 'events', eventList, 'title', ...
         'plotWindowData', 'command', [], 'winrej', eventMatrix);
     

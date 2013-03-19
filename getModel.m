@@ -10,7 +10,7 @@ function model = getModel(training, labels, sChannels, numCVs, featureFunction, 
 % model = getModel(training, labels, sChannels, numCVs, featureFunction, varargin) 
 % returns a model structure containing the fitted model for classifying 
 % the input "data" into the classes of "labels". By default, getModel
-% uses all of the channels and 4 cross validations. The default feature
+% uses all of the channels and 10 cross validations. The default feature
 % function uses the autoregressive coefficients of model order 2, computed for
 % each channel and concatenated across all the channels.
 %
@@ -52,7 +52,7 @@ function model = getModel(training, labels, sChannels, numCVs, featureFunction, 
 % term in the RBF Kernel. Depending on the features, you may need to
 % change the bounds of the grid search to get a better SVM fit.
 %
-% The default search range is -5 : 0.5 : 5 for both C and G in log2
+% The default search range is -5 : 0.5 : 10 for both C and G in log2
 % scale. 2^(range) gets the unscaled version.
 %
 % Extended Notes 2:
@@ -116,16 +116,20 @@ function model = getModel(training, labels, sChannels, numCVs, featureFunction, 
         varargin{1} = 2;
     end
   
-    % If using AR features, use signal processing toolbox if available 
-    if isequal(featureFunction, @getARfeatures)
-        if exist('arburg.m', 'file') == 2
-            caseLabel = 1;
-        elseif exist('arfit2.m', 'file') == 2
-            caseLabel = 2;
+    % If using AR features, use signal processing toolbox if available
+    if isequal(featureFunction, @getARfeatures)            
+        if length(varargin)==1  
+            if exist('arburg.m', 'file') == 2
+                caseLabel = 1;
+            elseif exist('arfit2.m', 'file') == 2
+                caseLabel = 2;
+            else
+                error('No autoregressive feature extraction algorithm found.');
+            end
+            inputArgs = [varargin {caseLabel}];
         else
-            error('No autoregressive feature extraction algorithm found.');
+            inputArgs = varargin;
         end
-        inputArgs = [varargin {caseLabel}];
     else
         inputArgs = varargin;
     end

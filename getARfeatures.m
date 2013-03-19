@@ -33,7 +33,6 @@ function featureVec = getARfeatures(data, modelOrder, algorithm)
 %  toolbox. If you don't have that toolbox, use arfit2.m, which is part
 %  of TSA (Time Series Analysis) toolbox, which is distributed with this
 %  package.
-%
 
 %   Copyright (C) 2012  Vernon Lawhern, UTSA, vlawhern@cs.utsa.edu
 %                       Kay Robbins, UTSA, krobbins@cs.utsa.edu
