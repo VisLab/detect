@@ -5,30 +5,37 @@ classification model and label continuous time series data. Our motivation for d
 for the analysis of multi-channel electroencephalography (EEG) signals.  
 
 ### Requirements and installation  
-The requirements to run DETECT are:  
+
+## The requirements to run DETECT are:  
 
 - MATLAB™ version R2011A or higher. Other versions of MATLAB™ may work; version R2011A and later are officially supported.
 - EEGLAB version 10 or higher, if you wish to use the DETECT plotting functions.
 
-To install:  
+## To install  
+ 
 - Download the toolbox and extract to your desired directory.   
 - Add the extracted folder to the MATLAB™ Path (File → Set Path). Use the “Add with Subfolders” option.  
 - Add EEGLAB and its subfolders to the MATLAB™ Path if you wish to use the DETECT plotting functions.  
 
-Sample data can be downloaded from our software page at 
-[http://visual.cs.utsa.edu/software/detect](http://visual.cs.utsa.edu/software/detect)  
+Sample data can be downloaded from our software page at  
 
-Documentation and sample code for all of our functions can be found at 
-[http://visual.cs.utsa.edu/detect/documentation/help/](http://visual.cs.utsa.edu/detect/documentation/help/).  
+> [http://visual.cs.utsa.edu/software/detect](http://visual.cs.utsa.edu/software/detect)  
 
-For more information on the status of this project, please visit our project page at: 
-[http://visual.cs.utsa.edu/detect](http://visual.cs.utsa.edu/detect).  
+Documentation and sample code for all of our functions can be found at  
 
-Users can report software problems and issues by visiting our Issue Tracker page located at
-[http://visual.cs.utsa.edu/software/detect/issues](http://visual.cs.utsa.edu/software/detect/issues)  
+> [http://visual.cs.utsa.edu/detect/documentation/help/](http://visual.cs.utsa.edu/detect/documentation/help/).  
+
+For more information on the status of this project, please visit our project page at  
+
+> [http://visual.cs.utsa.edu/detect](http://visual.cs.utsa.edu/detect).  
+
+Users can report software problems and issues by visiting our Issue Tracker page located at  
+
+> [http://visual.cs.utsa.edu/software/detect/issues](http://visual.cs.utsa.edu/software/detect/issues)  
 
 
-##Reference  
+## Reference  
+
 > Lawhern, V., Hairston, W.D., McDowell, K., Westerfield, M. and Robbins, K. (2012)  
 > Detection and Classification of Subject-Generated Artifacts in EEG Signals using Autoregressive Models  
 > Journal of Neuroscience Methods 208(2), 181-189.  
