@@ -1,0 +1,8 @@
+title: Detect
+description: MATLAB toolbox for continuous event detection
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-slate
+
+gems:
+  - jekyll-mentions
