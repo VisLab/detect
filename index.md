@@ -1,5 +1,14 @@
-### Welcome to GitHub Pages.
-This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:
+### DETECT overview  
+DETECT is a MATLAB™ Toolbox for the detection and identification of events in long multi-channel time series. 
+Given training data of the events of interest and a feature extraction technique, DETECT can be used to train a 
+classification model and label continuous time series data. Our motivation for developing DETECT was primarily 
+for the analysis of multi-channel electroencephalography (EEG) signals.  
+
+### Requirements and installation  
+The requirements to run DETECT are:  
+
+- MATLAB™ version R2011A or higher. Other versions of MATLAB™ may work; version R2011A and later are officially supported.
+- EEGLAB version 10 or higher, if you wish to use the DETECT plotting functions.
 
 ```
 $ cd your_repo_root/repo_name
