@@ -6,12 +6,12 @@ for the analysis of multi-channel electroencephalography (EEG) signals.
 
 ### Requirements and installation  
 
-## The requirements to run DETECT are:  
+#### The requirements to run DETECT are:  
 
 - MATLAB™ version R2011A or higher. Other versions of MATLAB™ may work; version R2011A and later are officially supported.
 - EEGLAB version 10 or higher, if you wish to use the DETECT plotting functions.
 
-## To install  
+#### To install  
  
 - Download the toolbox and extract to your desired directory.   
 - Add the extracted folder to the MATLAB™ Path (File → Set Path). Use the “Add with Subfolders” option.  
@@ -34,7 +34,7 @@ Users can report software problems and issues by visiting our Issue Tracker page
 > [http://visual.cs.utsa.edu/software/detect/issues](http://visual.cs.utsa.edu/software/detect/issues)  
 
 
-## Reference  
+### Reference  
 
 > Lawhern, V., Hairston, W.D., McDowell, K., Westerfield, M. and Robbins, K. (2012)  
 > Detection and Classification of Subject-Generated Artifacts in EEG Signals using Autoregressive Models  
